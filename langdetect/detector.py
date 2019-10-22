@@ -151,7 +151,7 @@ class Detector(object):
 
         self.langprob = [0.0] * len(self.langlist)
 
-        rand = javarandom.Random()
+        rand = Random()
         rand.setSeed(self.seed)
         for t in xrange(self.n_trial):
             prob = self._init_probability()
