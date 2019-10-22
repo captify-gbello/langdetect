@@ -8,7 +8,7 @@ from .lang_detect_exception import ErrorCode, LangDetectException
 from .language import Language
 from .utils.ngram import NGram
 from .utils.unicode_block import unicode_block
-
+import .utils.javarandom
 
 class Detector(object):
     '''
