@@ -23,7 +23,7 @@ from .unicode_block import (
 class NGram(object):
     LATIN1_EXCLUDED = messages.get_string('NGram.LATIN1_EXCLUDE')
     N_GRAM = 6
-
+    print("Ngrams = 6")
     def __init__(self):
         self.grams = ' '
         self.capitalword = False
