@@ -8,7 +8,7 @@ from .lang_detect_exception import ErrorCode, LangDetectException
 from .language import Language
 from .utils.ngram import NGram
 from .utils.unicode_block import unicode_block
-import .utils.javarandom
+from .utils.javarandom import Random
 
 class Detector(object):
     '''
@@ -151,14 +151,15 @@ class Detector(object):
 
         self.langprob = [0.0] * len(self.langlist)
 
-        self.random.seed(self.seed)
+        rand = javarandom.Random()
+        rand.setSeed(self.seed)
         for t in xrange(self.n_trial):
             prob = self._init_probability()
-            alpha = self.alpha + self.random.gauss(0.0, 1.0) * self.ALPHA_WIDTH
+            alpha = self.alpha + rand.nextGaussian() * self.ALPHA_WIDTH
 
             i = 0
             while True:
-                self._update_lang_prob(prob, self.random.choice(ngrams), alpha)
+                self._update_lang_prob(prob, ngrams[rand.nextInt(len(ngrams))], alpha)
                 if i % 5 == 0:
                     if self._normalize_prob(prob) > self.CONV_THRESHOLD or i >= self.ITERATION_LIMIT:
                         break
